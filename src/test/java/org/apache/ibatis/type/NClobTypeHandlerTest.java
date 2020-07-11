@@ -36,14 +36,14 @@ class NClobTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     TYPE_HANDLER.setParameter(ps, 1, "Hello", null);
     verify(ps).setCharacterStream(Mockito.eq(1), Mockito.any(Reader.class), Mockito.eq(5));
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     when(rs.getClob("column")).thenReturn(clob);
     when(clob.length()).thenReturn(3l);
     when(clob.getSubString(1, 3)).thenReturn("Hello");
@@ -52,14 +52,14 @@ class NClobTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     when(rs.getClob("column")).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, "column"));
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     when(rs.getClob(1)).thenReturn(clob);
     when(clob.length()).thenReturn(3L);
     when(clob.getSubString(1, 3)).thenReturn("Hello");
@@ -68,14 +68,14 @@ class NClobTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     when(rs.getClob(1)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, 1));
   }
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     when(cs.getClob(1)).thenReturn(clob);
     when(clob.length()).thenReturn(3L);
     when(clob.getSubString(1, 3)).thenReturn("Hello");
@@ -84,7 +84,7 @@ class NClobTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getClob(1)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(cs, 1));
   }

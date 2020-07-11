@@ -33,14 +33,14 @@ class TimeOnlyTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     TYPE_HANDLER.setParameter(ps, 1, DATE, null);
     verify(ps).setTime(1, SQL_TIME);
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     when(rs.getTime("column")).thenReturn(SQL_TIME);
     assertEquals(DATE, TYPE_HANDLER.getResult(rs, "column"));
     verify(rs, never()).wasNull();
@@ -48,7 +48,7 @@ class TimeOnlyTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     when(rs.getTime("column")).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, "column"));
     verify(rs, never()).wasNull();
@@ -56,7 +56,7 @@ class TimeOnlyTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     when(rs.getTime(1)).thenReturn(SQL_TIME);
     assertEquals(DATE, TYPE_HANDLER.getResult(rs, 1));
     verify(rs, never()).wasNull();
@@ -64,7 +64,7 @@ class TimeOnlyTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     when(rs.getTime(1)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, 1));
     verify(rs, never()).wasNull();
@@ -72,7 +72,7 @@ class TimeOnlyTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     when(cs.getTime(1)).thenReturn(SQL_TIME);
     assertEquals(DATE, TYPE_HANDLER.getResult(cs, 1));
     verify(cs, never()).wasNull();
@@ -80,7 +80,7 @@ class TimeOnlyTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getTime(1)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(cs, 1));
     verify(cs, never()).wasNull();

@@ -30,14 +30,14 @@ class OffsetTimeTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     TYPE_HANDLER.setParameter(ps, 1, OFFSET_TIME, null);
     verify(ps).setObject(1, OFFSET_TIME);
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     when(rs.getObject("column", OffsetTime.class)).thenReturn(OFFSET_TIME);
     assertEquals(OFFSET_TIME, TYPE_HANDLER.getResult(rs, "column"));
     verify(rs, never()).wasNull();
@@ -45,7 +45,7 @@ class OffsetTimeTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     when(rs.getObject("column", OffsetTime.class)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, "column"));
     verify(rs, never()).wasNull();
@@ -53,7 +53,7 @@ class OffsetTimeTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     when(rs.getObject(1, OffsetTime.class)).thenReturn(OFFSET_TIME);
     assertEquals(OFFSET_TIME, TYPE_HANDLER.getResult(rs, 1));
     verify(rs, never()).wasNull();
@@ -61,7 +61,7 @@ class OffsetTimeTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     when(rs.getObject(1, OffsetTime.class)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, 1));
     verify(rs, never()).wasNull();
@@ -69,7 +69,7 @@ class OffsetTimeTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     when(cs.getObject(1, OffsetTime.class)).thenReturn(OFFSET_TIME);
     assertEquals(OFFSET_TIME, TYPE_HANDLER.getResult(cs, 1));
     verify(cs, never()).wasNull();
@@ -77,7 +77,7 @@ class OffsetTimeTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getObject(1, OffsetTime.class)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(cs, 1));
     verify(cs, never()).wasNull();

@@ -17,6 +17,7 @@ package org.apache.ibatis.session;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiFunction;
 
 import org.apache.ibatis.binding.MapperRegistry;
@@ -152,21 +154,21 @@ public class Configuration {
   protected final TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
   protected final LanguageDriverRegistry languageRegistry = new LanguageDriverRegistry();
 
-  protected final Map<String, MappedStatement> mappedStatements = new StrictMap<MappedStatement>("Mapped Statements collection")
+  protected final Map<String, MappedStatement> mappedStatements = Collections.synchronizedMap(new StrictMap<MappedStatement>("Mapped Statements collection")
       .conflictMessageProducer((savedValue, targetValue) ->
-          ". please check " + savedValue.getResource() + " and " + targetValue.getResource());
-  protected final Map<String, Cache> caches = new StrictMap<>("Caches collection");
-  protected final Map<String, ResultMap> resultMaps = new StrictMap<>("Result Maps collection");
-  protected final Map<String, ParameterMap> parameterMaps = new StrictMap<>("Parameter Maps collection");
-  protected final Map<String, KeyGenerator> keyGenerators = new StrictMap<>("Key Generators collection");
+          ". please check " + savedValue.getResource() + " and " + targetValue.getResource()));
+  protected final Map<String, Cache> caches = Collections.synchronizedMap(new StrictMap<>("Caches collection"));
+  protected final Map<String, ResultMap> resultMaps = Collections.synchronizedMap(new StrictMap<>("Result Maps collection"));
+  protected final Map<String, ParameterMap> parameterMaps = Collections.synchronizedMap(new StrictMap<>("Parameter Maps collection"));
+  protected final Map<String, KeyGenerator> keyGenerators = Collections.synchronizedMap(new StrictMap<>("Key Generators collection"));
 
-  protected final Set<String> loadedResources = new HashSet<>();
-  protected final Map<String, XNode> sqlFragments = new StrictMap<>("XML fragments parsed from previous mappers");
+  protected final Set<String> loadedResources = ConcurrentHashMap.newKeySet();
+  protected final Map<String, XNode> sqlFragments = Collections.synchronizedMap(new StrictMap<>("XML fragments parsed from previous mappers"));
 
-  protected final Collection<XMLStatementBuilder> incompleteStatements = new LinkedList<>();
-  protected final Collection<CacheRefResolver> incompleteCacheRefs = new LinkedList<>();
-  protected final Collection<ResultMapResolver> incompleteResultMaps = new LinkedList<>();
-  protected final Collection<MethodResolver> incompleteMethods = new LinkedList<>();
+  protected final Collection<XMLStatementBuilder> incompleteStatements = Collections.synchronizedList(new LinkedList<>());
+  protected final Collection<CacheRefResolver> incompleteCacheRefs =  Collections.synchronizedList(new LinkedList<>());
+  protected final Collection<ResultMapResolver> incompleteResultMaps =  Collections.synchronizedList(new LinkedList<>());
+  protected final Collection<MethodResolver> incompleteMethods =  Collections.synchronizedList(new LinkedList<>());
 
   /*
    * A map holds cache-ref relationship. The key is the namespace that

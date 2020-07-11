@@ -63,7 +63,7 @@ class SqlxmlTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     when(connection.createSQLXML()).thenReturn(sqlxml);
     when(ps.getConnection()).thenReturn(connection);
     String xml = "<message>test</message>";
@@ -75,7 +75,7 @@ class SqlxmlTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     String xml = "<message>test</message>";
     when(sqlxml.getString()).thenReturn(xml);
     when(rs.getSQLXML("column")).thenReturn(sqlxml);
@@ -85,14 +85,14 @@ class SqlxmlTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     when(rs.getSQLXML("column")).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, "column"));
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     String xml = "<message>test</message>";
     when(sqlxml.getString()).thenReturn(xml);
     when(rs.getSQLXML(1)).thenReturn(sqlxml);
@@ -102,14 +102,14 @@ class SqlxmlTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     when(rs.getSQLXML(1)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, 1));
   }
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     String xml = "<message>test</message>";
     when(sqlxml.getString()).thenReturn(xml);
     when(cs.getSQLXML(1)).thenReturn(sqlxml);
@@ -119,7 +119,7 @@ class SqlxmlTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getSQLXML(1)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(cs, 1));
   }

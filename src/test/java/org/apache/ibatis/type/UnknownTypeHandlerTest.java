@@ -32,14 +32,14 @@ class UnknownTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     TYPE_HANDLER.setParameter(ps, 1, "Hello", null);
     verify(ps).setString(1, "Hello");
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     when(rs.getMetaData()).thenReturn(rsmd);
     when(rsmd.getColumnCount()).thenReturn(1);
     when(rsmd.getColumnLabel(1)).thenReturn("column");
@@ -56,7 +56,7 @@ class UnknownTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     when(rs.getMetaData()).thenReturn(rsmd);
     when(rsmd.getColumnClassName(1)).thenReturn(String.class.getName());
     when(rsmd.getColumnType(1)).thenReturn(JdbcType.VARCHAR.TYPE_CODE);
@@ -71,14 +71,14 @@ class UnknownTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     when(cs.getObject(1)).thenReturn("Hello");
     assertEquals("Hello", TYPE_HANDLER.getResult(cs, 1));
   }
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getObject(1)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(cs, 1));
   }

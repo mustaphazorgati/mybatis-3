@@ -40,13 +40,13 @@ class ArrayTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     TYPE_HANDLER.setParameter(ps, 1, mockArray, null);
     verify(ps).setArray(1, mockArray);
   }
 
   @Test
-  public void shouldSetStringArrayParameter() throws Exception {
+ void shouldSetStringArrayParameter() throws Exception {
     Connection connection = mock(Connection.class);
     when(ps.getConnection()).thenReturn(connection);
 
@@ -59,13 +59,13 @@ class ArrayTypeHandlerTest extends BaseTypeHandlerTest {
   }
 
   @Test
-  public void shouldSetNullParameter() throws Exception {
+ void shouldSetNullParameter() throws Exception {
     TYPE_HANDLER.setParameter(ps, 1, null, JdbcType.ARRAY);
     verify(ps).setNull(1, Types.ARRAY);
   }
 
   @Test
-  public void shouldFailForNonArrayParameter() {
+ void shouldFailForNonArrayParameter() {
     assertThrows(TypeException.class, () -> {
       TYPE_HANDLER.setParameter(ps, 1, "unsupported parameter type", null);
     });
@@ -73,7 +73,7 @@ class ArrayTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     when(rs.getArray("column")).thenReturn(mockArray);
     String[] stringArray = new String[] { "a", "b" };
     when(mockArray.getArray()).thenReturn(stringArray);
@@ -83,14 +83,14 @@ class ArrayTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     when(rs.getArray("column")).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, "column"));
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     when(rs.getArray(1)).thenReturn(mockArray);
     String[] stringArray = new String[] { "a", "b" };
     when(mockArray.getArray()).thenReturn(stringArray);
@@ -100,14 +100,14 @@ class ArrayTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     when(rs.getArray(1)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, 1));
   }
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     when(cs.getArray(1)).thenReturn(mockArray);
     String[] stringArray = new String[] { "a", "b" };
     when(mockArray.getArray()).thenReturn(stringArray);
@@ -117,7 +117,7 @@ class ArrayTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getArray(1)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(cs, 1));
   }

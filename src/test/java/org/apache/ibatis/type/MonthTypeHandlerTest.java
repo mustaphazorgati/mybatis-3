@@ -34,14 +34,14 @@ class MonthTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     TYPE_HANDLER.setParameter(ps, 1, INSTANT, null);
     verify(ps).setInt(1, INSTANT.getValue());
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     when(rs.getInt("column")).thenReturn(INSTANT.getValue(), 0);
     assertEquals(INSTANT, TYPE_HANDLER.getResult(rs, "column"));
     try {
@@ -56,7 +56,7 @@ class MonthTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     when(rs.getInt("column")).thenReturn(0);
     when(rs.wasNull()).thenReturn(true);
     assertNull(TYPE_HANDLER.getResult(rs, "column"));
@@ -64,7 +64,7 @@ class MonthTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     when(rs.getInt(1)).thenReturn(INSTANT.getValue(), 0);
     assertEquals(INSTANT, TYPE_HANDLER.getResult(rs, 1));
     try {
@@ -79,7 +79,7 @@ class MonthTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     when(rs.getInt(1)).thenReturn(0);
     when(rs.wasNull()).thenReturn(true);
     assertNull(TYPE_HANDLER.getResult(rs, 1));
@@ -87,7 +87,7 @@ class MonthTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     when(cs.getInt(1)).thenReturn(INSTANT.getValue(), 0);
     assertEquals(INSTANT, TYPE_HANDLER.getResult(cs, 1));
     try {
@@ -102,7 +102,7 @@ class MonthTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getInt(1)).thenReturn(0);
     when(cs.wasNull()).thenReturn(true);
     assertNull(TYPE_HANDLER.getResult(cs, 1));

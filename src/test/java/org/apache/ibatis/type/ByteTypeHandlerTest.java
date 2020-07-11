@@ -28,14 +28,14 @@ class ByteTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     TYPE_HANDLER.setParameter(ps, 1, (byte) 100, null);
     verify(ps).setByte(1, (byte) 100);
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     when(rs.getByte("column")).thenReturn((byte) 100, (byte) 0);
     assertEquals(Byte.valueOf((byte) 100), TYPE_HANDLER.getResult(rs, "column"));
     assertEquals(Byte.valueOf((byte) 0), TYPE_HANDLER.getResult(rs, "column"));
@@ -43,7 +43,7 @@ class ByteTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     when(rs.getByte("column")).thenReturn((byte) 0);
     when(rs.wasNull()).thenReturn(true);
     assertNull(TYPE_HANDLER.getResult(rs, "column"));
@@ -51,7 +51,7 @@ class ByteTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     when(rs.getByte(1)).thenReturn((byte) 100, (byte) 0);
     assertEquals(Byte.valueOf((byte) 100), TYPE_HANDLER.getResult(rs, 1));
     assertEquals(Byte.valueOf((byte) 0), TYPE_HANDLER.getResult(rs, 1));
@@ -59,7 +59,7 @@ class ByteTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     when(rs.getByte(1)).thenReturn((byte) 0);
     when(rs.wasNull()).thenReturn(true);
     assertNull(TYPE_HANDLER.getResult(rs, 1));
@@ -67,7 +67,7 @@ class ByteTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     when(cs.getByte(1)).thenReturn((byte) 100, (byte) 0);
     assertEquals(Byte.valueOf((byte) 100), TYPE_HANDLER.getResult(cs, 1));
     assertEquals(Byte.valueOf((byte) 0), TYPE_HANDLER.getResult(cs, 1));
@@ -75,7 +75,7 @@ class ByteTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getByte(1)).thenReturn((byte) 0);
     when(cs.wasNull()).thenReturn(true);
     assertNull(TYPE_HANDLER.getResult(cs, 1));

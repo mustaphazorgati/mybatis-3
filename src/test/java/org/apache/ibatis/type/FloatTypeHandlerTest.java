@@ -28,14 +28,14 @@ class FloatTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     TYPE_HANDLER.setParameter(ps, 1, 100f, null);
     verify(ps).setFloat(1, 100f);
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     when(rs.getFloat("column")).thenReturn(100f, 0f);
     assertEquals(Float.valueOf(100f), TYPE_HANDLER.getResult(rs, "column"));
     assertEquals(Float.valueOf(0f), TYPE_HANDLER.getResult(rs, "column"));
@@ -43,7 +43,7 @@ class FloatTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     when(rs.getFloat("column")).thenReturn(0f);
     when(rs.wasNull()).thenReturn(true);
     assertNull(TYPE_HANDLER.getResult(rs, "column"));
@@ -51,7 +51,7 @@ class FloatTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     when(rs.getFloat(1)).thenReturn(100f, 0f);
     assertEquals(Float.valueOf(100f), TYPE_HANDLER.getResult(rs, 1));
     assertEquals(Float.valueOf(0f), TYPE_HANDLER.getResult(rs, 1));
@@ -59,7 +59,7 @@ class FloatTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     when(rs.getFloat(1)).thenReturn(0f);
     when(rs.wasNull()).thenReturn(true);
     assertNull(TYPE_HANDLER.getResult(rs, 1));
@@ -67,7 +67,7 @@ class FloatTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     when(cs.getFloat(1)).thenReturn(100f, 0f);
     assertEquals(Float.valueOf(100f), TYPE_HANDLER.getResult(cs, 1));
     assertEquals(Float.valueOf(0f), TYPE_HANDLER.getResult(cs, 1));
@@ -75,7 +75,7 @@ class FloatTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getFloat(1)).thenReturn(0f);
     when(cs.wasNull()).thenReturn(true);
     assertNull(TYPE_HANDLER.getResult(cs, 1));

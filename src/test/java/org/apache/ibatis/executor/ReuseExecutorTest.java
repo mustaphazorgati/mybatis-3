@@ -26,7 +26,7 @@ class ReuseExecutorTest extends BaseExecutorTest {
 
   @Override
   @Test
-  public void shouldFetchPostWithBlogWithCompositeKey() throws Exception {
+ void shouldFetchPostWithBlogWithCompositeKey() throws Exception {
     super.shouldFetchPostWithBlogWithCompositeKey();
   }
 

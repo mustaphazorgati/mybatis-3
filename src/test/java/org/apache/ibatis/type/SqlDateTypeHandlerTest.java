@@ -31,14 +31,14 @@ class SqlDateTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     TYPE_HANDLER.setParameter(ps, 1, SQL_DATE, null);
     verify(ps).setDate(1, SQL_DATE);
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     when(rs.getDate("column")).thenReturn(SQL_DATE);
     assertEquals(SQL_DATE, TYPE_HANDLER.getResult(rs, "column"));
     verify(rs, never()).wasNull();
@@ -51,7 +51,7 @@ class SqlDateTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     when(rs.getDate(1)).thenReturn(SQL_DATE);
     assertEquals(SQL_DATE, TYPE_HANDLER.getResult(rs, 1));
     verify(rs, never()).wasNull();
@@ -64,7 +64,7 @@ class SqlDateTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     when(cs.getDate(1)).thenReturn(SQL_DATE);
     assertEquals(SQL_DATE, TYPE_HANDLER.getResult(cs, 1));
     verify(cs, never()).wasNull();

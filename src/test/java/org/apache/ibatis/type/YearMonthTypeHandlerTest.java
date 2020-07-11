@@ -32,14 +32,14 @@ class YearMonthTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     TYPE_HANDLER.setParameter(ps, 1, INSTANT, null);
     verify(ps).setString(1, INSTANT.toString());
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     when(rs.getString("column")).thenReturn(INSTANT.toString());
     assertEquals(INSTANT, TYPE_HANDLER.getResult(rs, "column"));
     verify(rs, never()).wasNull();
@@ -47,14 +47,14 @@ class YearMonthTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     assertNull(TYPE_HANDLER.getResult(rs, "column"));
     verify(rs, never()).wasNull();
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     when(rs.getString(1)).thenReturn(INSTANT.toString());
     assertEquals(INSTANT, TYPE_HANDLER.getResult(rs, 1));
     verify(rs, never()).wasNull();
@@ -62,14 +62,14 @@ class YearMonthTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     assertNull(TYPE_HANDLER.getResult(rs, 1));
     verify(rs, never()).wasNull();
   }
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     when(cs.getString(1)).thenReturn(INSTANT.toString());
     assertEquals(INSTANT, TYPE_HANDLER.getResult(cs, 1));
     verify(cs, never()).wasNull();
@@ -77,7 +77,7 @@ class YearMonthTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     assertNull(TYPE_HANDLER.getResult(cs, 1));
     verify(cs, never()).wasNull();
   }

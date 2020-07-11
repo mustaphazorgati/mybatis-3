@@ -68,7 +68,7 @@ class BlobInputStreamTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     InputStream in = new ByteArrayInputStream("Hello".getBytes());
     TYPE_HANDLER.setParameter(ps, 1, in, null);
     verify(ps).setBlob(1, in);
@@ -76,7 +76,7 @@ class BlobInputStreamTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     InputStream in = new ByteArrayInputStream("Hello".getBytes());
     when(rs.getBlob("column")).thenReturn(blob);
     when(blob.getBinaryStream()).thenReturn(in);
@@ -86,14 +86,14 @@ class BlobInputStreamTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     when(rs.getBlob("column")).thenReturn(null);
     assertThat(TYPE_HANDLER.getResult(rs, "column")).isNull();
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     InputStream in = new ByteArrayInputStream("Hello".getBytes());
     when(rs.getBlob(1)).thenReturn(blob);
     when(blob.getBinaryStream()).thenReturn(in);
@@ -102,14 +102,14 @@ class BlobInputStreamTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     when(rs.getBlob(1)).thenReturn(null);
     assertThat(TYPE_HANDLER.getResult(rs, 1)).isNull();
   }
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     InputStream in = new ByteArrayInputStream("Hello".getBytes());
     when(cs.getBlob(1)).thenReturn(blob);
     when(blob.getBinaryStream()).thenReturn(in);
@@ -118,7 +118,7 @@ class BlobInputStreamTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getBlob(1)).thenReturn(null);
     assertThat(TYPE_HANDLER.getResult(cs, 1)).isNull();
   }

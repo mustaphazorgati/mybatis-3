@@ -35,7 +35,7 @@ class BlobByteObjectArrayTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     final ArgumentCaptor<Integer> positionCaptor = ArgumentCaptor.forClass(Integer.class);
     final ArgumentCaptor<ByteArrayInputStream> byteArrayCaptor = ArgumentCaptor.forClass(ByteArrayInputStream.class);
     final ArgumentCaptor<Integer> lengthCaptor = ArgumentCaptor.forClass(Integer.class);
@@ -51,7 +51,7 @@ class BlobByteObjectArrayTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     byte[] byteArray = new byte[] { 1, 2 };
     when(rs.getBlob("column")).thenReturn(blob);
     when(blob.length()).thenReturn((long) byteArray.length);
@@ -62,14 +62,14 @@ class BlobByteObjectArrayTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     when(rs.getBlob("column")).thenReturn(null);
     assertThat(TYPE_HANDLER.getResult(rs, "column")).isNull();
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     byte[] byteArray = new byte[] { 1, 2 };
     when(rs.getBlob(1)).thenReturn(blob);
     when(blob.length()).thenReturn((long) byteArray.length);
@@ -79,14 +79,14 @@ class BlobByteObjectArrayTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     when(rs.getBlob(1)).thenReturn(null);
     assertThat(TYPE_HANDLER.getResult(rs, 1)).isNull();
   }
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     byte[] byteArray = new byte[] { 1, 2 };
     when(cs.getBlob(1)).thenReturn(blob);
     when(blob.length()).thenReturn((long) byteArray.length);
@@ -96,7 +96,7 @@ class BlobByteObjectArrayTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getBlob(1)).thenReturn(null);
     assertThat(TYPE_HANDLER.getResult(cs, 1)).isNull();
   }

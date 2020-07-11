@@ -70,7 +70,7 @@ class ClobReaderTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldSetParameter() throws Exception {
+ void shouldSetParameter() throws Exception {
     Reader reader = new StringReader("Hello");
     TYPE_HANDLER.setParameter(ps, 1, reader, null);
     verify(ps).setClob(1, reader);
@@ -78,7 +78,7 @@ class ClobReaderTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByName() throws Exception {
+ void shouldGetResultFromResultSetByName() throws Exception {
     Reader reader = new StringReader("Hello");
     when(rs.getClob("column")).thenReturn(clob);
     when(clob.getCharacterStream()).thenReturn(reader);
@@ -87,28 +87,28 @@ class ClobReaderTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByName() throws Exception {
+ void shouldGetResultNullFromResultSetByName() throws Exception {
     when(rs.getClob("column")).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, "column"));
   }
 
   @Override
   @Test
-  public void shouldGetResultFromResultSetByPosition() throws Exception {
+ void shouldGetResultFromResultSetByPosition() throws Exception {
     when(rs.getClob(1)).thenReturn(clob);
     assertNull(TYPE_HANDLER.getResult(rs, 1));
   }
 
   @Override
   @Test
-  public void shouldGetResultNullFromResultSetByPosition() throws Exception {
+ void shouldGetResultNullFromResultSetByPosition() throws Exception {
     when(rs.getClob(1)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(rs, 1));
   }
 
   @Override
   @Test
-  public void shouldGetResultFromCallableStatement() throws Exception {
+ void shouldGetResultFromCallableStatement() throws Exception {
     Reader reader = new StringReader("Hello");
     when(cs.getClob(1)).thenReturn(clob);
     when(clob.getCharacterStream()).thenReturn(reader);
@@ -117,7 +117,7 @@ class ClobReaderTypeHandlerTest extends BaseTypeHandlerTest {
 
   @Override
   @Test
-  public void shouldGetResultNullFromCallableStatement() throws Exception {
+ void shouldGetResultNullFromCallableStatement() throws Exception {
     when(cs.getClob(1)).thenReturn(null);
     assertNull(TYPE_HANDLER.getResult(cs, 1));
   }
